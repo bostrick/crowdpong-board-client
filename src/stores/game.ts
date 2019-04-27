@@ -23,8 +23,12 @@ export interface IGame {
 
   do_paddle_one_up() : void;
   do_paddle_one_down() : void;
+
   do_paddle_two_up() : void;
   do_paddle_two_down() : void;
+
+  do_ball_faster() : void;
+  do_ball_slower() : void;
 
 }
 
@@ -32,7 +36,7 @@ export class Game implements IGame {
 
     readonly PADDLE_DELTAV = 0.1;
     readonly PADDLE_V_MAX = 2; 
-    readonly BALL_DELTAV = 1.0;
+    readonly BALL_V_DELTA = 0.1;
 
     readonly COURT_WIDTH = 800;
     readonly COURT_HEIGHT = 600;
@@ -78,7 +82,6 @@ export class Game implements IGame {
     @action 
     get_state() {
       axios.get(this.url).then((resp) => {
-        console.log(resp.data);
         this.paddle_one_v = resp.data.paddle_blue_v;
         this.paddle_two_v = resp.data.paddle_red_v;
         this.paddle_max_v = resp.data.paddle_max_v;
@@ -115,11 +118,20 @@ export class Game implements IGame {
     }
 
     @action
+    do_ball_faster() { 
+        this.ball_v[0] *= 1.0 + this.BALL_V_DELTA;
+        this.ball_v[1] *= 1.0 + this.BALL_V_DELTA;
+    }
+
+    do_ball_slower() { 
+        this.ball_v[0] *= 1.0 - this.BALL_V_DELTA;
+        this.ball_v[1] *= 1.0 - this.BALL_V_DELTA;
+    }
+
+    @action
     do_step = () => { 
 
       // move the paddles
-      console.log(this.COURT_HEIGHT - this.PADDLE_HEIGHT/2.0);
-
       if (this.paddle_one_v > 0.0 && this.paddle_one_x < this.COURT_HEIGHT) {
         this.paddle_one_x += this.paddle_one_v;
       }

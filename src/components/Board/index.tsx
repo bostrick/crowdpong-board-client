@@ -27,13 +27,13 @@ export class Board extends React.Component<{game? : IGame}, {}> {
               strokeDasharray="20" strokeDashoffset="10" 
               strokeWidth={game.WALL_WIDTH} />
 
-          <rect className="paddle"
+          <rect className="paddle" id="blue_paddle" fill="blue"
             width={game.WALL_WIDTH}
             height={game.PADDLE_HEIGHT}
             x={game.PADDLE_OFFSET-game.WALL_WIDTH/2.0}
             y={game.paddle_one_x-game.PADDLE_HEIGHT/2.0} />
 
-          <rect className="paddle"
+          <rect className="paddle" id="red_paddle" fill="red"
             width={game.WALL_WIDTH}
             height={game.PADDLE_HEIGHT}
             x={game.COURT_WIDTH-game.PADDLE_OFFSET-game.WALL_WIDTH/2.0}

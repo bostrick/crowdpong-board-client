@@ -30,6 +30,14 @@ export class KeyboardDriver {
             this.game.do_paddle_two_down();
             break;
 
+          case 'BracketLeft':
+            this.game.do_ball_slower();
+            break;
+
+          case 'BracketRight':
+            this.game.do_ball_faster();
+            break;
+
           default:
             console.log(`unhandlded key ${event.code}`);
       }
