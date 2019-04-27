@@ -25,6 +25,9 @@ export class InfoPanel extends React.Component<{game? : IGame}, {}> {
           <li className="list-group-item">
             delta v: {game.paddle_delta_v}
           </li>
+          <li className="list-group-item">
+            ball v: {game.ball_v[0]}
+          </li>
         </ul>
       </div>
     </div>

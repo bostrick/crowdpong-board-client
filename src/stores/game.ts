@@ -12,6 +12,8 @@ export interface IGame {
   readonly PADDLE_OFFSET  : number;
 
   ball_x: Array<number>;
+  ball_v: Array<number>;
+
   paddle_one_x: number;
   paddle_two_x: number;
 
@@ -86,6 +88,18 @@ export class Game implements IGame {
         this.paddle_two_v = resp.data.paddle_red_v;
         this.paddle_max_v = resp.data.paddle_max_v;
         this.paddle_delta_v = resp.data.paddle_delta_v;
+
+        if (this.ball_v[0] > 0) {
+            this.ball_v[0] = resp.data.ball_v;
+        } else {
+            this.ball_v[0] = -resp.data.ball_v;
+        }
+
+        if (this.ball_v[1] > 0) {
+            this.ball_v[1] = resp.data.ball_v;
+        } else {
+            this.ball_v[1] = -resp.data.ball_v;
+        }
       });
     }
 
