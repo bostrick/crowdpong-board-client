@@ -1,0 +1,37 @@
+{
+  "name": "crowdpong",
+  "version": "1.0.0",
+  "description": "Pong for Crowds",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --watch",
+    "watch": "npm run build -- --watch",
+    "build": "./node_modules/.bin/webpack",
+    "test": "NODE_ENV=test jest",
+    "start": "node ./app.js"
+  },
+  "author": "",
+  "license": "GPL-2.0-only",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "coffeescript": "^2.3.2",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
+    "typescript": "^3.4.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.3",
+    "copy-webpack-plugin": "^5.0.3",
+    "express": "^4.16.4",
+    "mobx": "^5.9.4",
+    "mobx-react": "^5.4.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
