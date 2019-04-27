@@ -23,7 +23,8 @@ export interface IGame {
 
 export class Game implements IGame {
 
-    readonly PADDLE_DELTAV = 1.0;
+    readonly PADDLE_DELTAV = 0.1;
+    readonly PADDLE_V_MAX = 2; 
     readonly BALL_DELTAV = 1.0;
 
     readonly COURT_WIDTH = 800;
@@ -54,35 +55,54 @@ export class Game implements IGame {
 
     @action
     do_paddle_one_up() { 
-      if (this.paddle_one_x > this.PADDLE_HEIGHT/2.0) {
-        this.paddle_one_x -= this.PADDLE_DELTAX; 
+      if (this.paddle_one_v > -this.PADDLE_V_MAX) {
+        this.paddle_one_v -= this.PADDLE_DELTAV; 
       }
     }
 
     @action
     do_paddle_one_down() { 
-      if (this.paddle_one_x < (this.COURT_HEIGHT - this.PADDLE_HEIGHT/2.0)) {
-        this.paddle_one_x += this.PADDLE_DELTAX; 
+      if (this.paddle_one_v < this.PADDLE_V_MAX) {
+        this.paddle_one_v += this.PADDLE_DELTAV; 
       }
     }
 
     @action
     do_paddle_two_up() {
-      if (this.paddle_two_x > this.PADDLE_HEIGHT/2.0) {
-        this.paddle_two_x -= this.PADDLE_DELTAX; 
+      if (this.paddle_two_v > -this.PADDLE_V_MAX) {
+        this.paddle_two_v -= this.PADDLE_DELTAV; 
       }
     }
 
     @action
     do_paddle_two_down() {
-      if (this.paddle_two_x < (this.COURT_HEIGHT - this.PADDLE_HEIGHT/2.0)) {
-        this.paddle_two_x += this.PADDLE_DELTAX; 
+      if (this.paddle_two_v < this.PADDLE_V_MAX) {
+        this.paddle_two_v += this.PADDLE_DELTAV; 
       }
     }
 
     @action
     do_step = () => { 
 
+      // move the paddles
+      console.log(this.COURT_HEIGHT - this.PADDLE_HEIGHT/2.0);
+
+      if (this.paddle_one_v > 0.0 && this.paddle_one_x < this.COURT_HEIGHT) {
+        this.paddle_one_x += this.paddle_one_v;
+      }
+
+      if (this.paddle_one_v < 0.0 && this.paddle_one_x > 0.0) {
+        this.paddle_one_x += this.paddle_one_v;
+      }
+
+      if (this.paddle_two_v > 0.0 && this.paddle_two_x < this.COURT_HEIGHT) {
+        this.paddle_two_x += this.paddle_two_v;
+      }
+
+      if (this.paddle_two_v < 0.0 && this.paddle_two_x > 0.0) {
+        this.paddle_two_x += this.paddle_two_v;
+      }
+            
       // move the ball
       this.ball_x[0] += this.ball_v[0];
       this.ball_x[1] += this.ball_v[1];
