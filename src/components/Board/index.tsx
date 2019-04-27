@@ -11,7 +11,6 @@ export class Board extends React.Component<{game? : IGame}, {}> {
   render() {
     const game = this.props.game;
     return <div className="board">
-      {JSON.stringify(game)}
       <svg id="board" version="1.1" 
         width={game.COURT_WIDTH} height={game.COURT_HEIGHT}>
 
@@ -48,6 +47,7 @@ export class Board extends React.Component<{game? : IGame}, {}> {
           />
 
         </svg>
+      {JSON.stringify(game)}
 
     </div>;
   }

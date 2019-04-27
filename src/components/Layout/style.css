@@ -1,0 +1,18 @@
+.floor {
+  fill: black;
+}
+
+.wall {
+  fill: white;
+  stroke: white;
+}
+
+.paddle {
+  fill: white;
+  stroke: white;
+}
+
+.ball {
+  fill: white;
+  stroke: white;
+}
