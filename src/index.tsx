@@ -10,7 +10,8 @@ import { KeyboardDriver } from "./drivers/keyboard";
 
 import "./style.css";
 
-const game = new Game();
+let w = window as any;
+const game = new Game(w.crowdpong_globals.api_base);
 const kbd = new KeyboardDriver(game);
 
 const App = () => (

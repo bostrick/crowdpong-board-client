@@ -1,4 +1,5 @@
 
+import axios from 'axios';
 import { observable, action } from "mobx"
 
 export interface IGame {
@@ -41,6 +42,9 @@ export class Game implements IGame {
     private readonly min_y = this.WALL_WIDTH;
     private readonly max_y = this.COURT_HEIGHT - this.WALL_WIDTH;
 
+    @observable paddle_max_v = 0.0;
+    @observable paddle_delta_v = 0.0;
+
     @observable ball_x = [this.COURT_WIDTH/2.0, this.COURT_HEIGHT/2.0];
     @observable ball_v = [1.0, 1.0];
 
@@ -52,6 +56,29 @@ export class Game implements IGame {
 
     @observable score_one = 0;
     @observable score_two = 0;
+
+    private base_url : string;
+    private url : string;
+    private timer_id : number;
+
+    constructor(base_url : string) {
+        this.base_url = base_url;
+        this.url = `${this.base_url}/game_state`;
+        this.get_state();
+
+        this.timer_id = setInterval(() => this.get_state(), 1000);
+    }
+
+    @action 
+    get_state() {
+      axios.get(this.url).then((resp) => {
+        console.log(resp.data);
+        this.paddle_one_v = resp.data.paddle_blue_v;
+        this.paddle_two_v = resp.data.paddle_red_v;
+        this.paddle_max_v = resp.data.paddle_max_v;
+        this.paddle_delta_v = resp.data.paddle_delta_v;
+      });
+    }
 
     @action
     do_paddle_one_up() { 
