@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {observer, inject} from 'mobx-react';
-import {Board} from '../Board';
+import {InfoPanel} from '../InfoPanel';
 
 import "./style.css";
 
@@ -12,6 +12,7 @@ export class Sidebar extends React.Component<{}, {}> {
       <figure className="w-100 figure">
         <img className="w-100" src="img/controller_url.png"/>
       </figure>
+      <InfoPanel />
     </div>;
   }
 

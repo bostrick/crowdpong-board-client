@@ -15,6 +15,12 @@ export interface IGame {
   paddle_one_x: number;
   paddle_two_x: number;
 
+  paddle_one_v: number;
+  paddle_two_v: number;
+
+  paddle_max_v: number;
+  paddle_delta_v: number;
+
   do_paddle_one_up() : void;
   do_paddle_one_down() : void;
   do_paddle_two_up() : void;
